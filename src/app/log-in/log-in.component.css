@@ -1,0 +1,22 @@
+.form-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+}
+.form-container{
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin-top: 15%;
+}
+.log-in-button{
+    padding: 10px;
+}
+.padding-bottom{
+    padding-bottom: 16px;
+}
+.center{
+    margin-left:auto;
+    margin-right: auto;
+}
+.form-full-width {
+    width: 100%;
+}
