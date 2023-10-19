@@ -1,7 +1,7 @@
 import { Component ,OnDestroy,OnInit} from '@angular/core';
 import { UserDataService } from '../user-data.service';
-import { User } from '../user-detail.model';
 import { Router } from '@angular/router';
+import { User } from '../user-detail.model';
 
 
 @Component({
@@ -10,33 +10,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./show-user-details.component.css']
 })
 export class ShowUserDetailsComponent implements OnInit{
-  formData;
+  formData:User;
   str:string='';
-  userAddress='';
-  userDetail;
+  userAddress:string='';
+  userDetailArray:{ name: string; email: string; dob: Date; number: number; institute: string; catagory: string; percentage: number; gender: string }[];
 
-  userArray = [];
+  userArray:{ name: string; email: string; dob: Date; number: number; institute: string; catagory: string; percentage: number; gender: string }[] = [];
   displayColumn =['name','email','dob','number','institute','catagory','percentage','gender']; 
 
   constructor(private userData:UserDataService,
               private router:Router){}
   ngOnInit(): void {
 
-    this.userData.getFormData().subscribe(formData => {
+    this.userData.getUserFormData().subscribe(formData => {
       this.formData = formData;
       for(let key in  this.formData.hobby ){
         if(this.formData.hobby[key]) {
-          this.str = this.str + ' , ' + key;
+          this.str = this.str + '  ' + key;
         }
       }
 
       for(let a in this.formData.address){
         if(this.formData.address[a]){
-          this.userAddress = this.userAddress + " " + this.formData.address[a].addedAddress
+          this.userAddress = this.userAddress + "  " + this.formData.address[a].addedAddress
         }
       }
       
-      const userDetail = {
+      const userDetail:{ name: string; email: string; dob: Date; number: number; institute: string; catagory: string; percentage: number; gender: string; }= {
         name: this.formData.name,
         email:this.formData.email,
         dob:this.formData.dob,
@@ -44,10 +44,7 @@ export class ShowUserDetailsComponent implements OnInit{
         institute:this.formData.education.institute,
         catagory:this.formData.education.catagory,
         percentage:this.formData.education.percentage,
-        // hobby: this.str,
         gender:this.formData.gender,
-        // address:{addedAddress:this.formData.addedAddress},
-        // summary:this.formData.summary
       }
       if(this.formData.summary){
         this.displayColumn.push('summary')
@@ -66,9 +63,7 @@ export class ShowUserDetailsComponent implements OnInit{
       }
 
       this.userArray.push(userDetail)
-      console.log(this.userArray)
-      console.log(this.displayColumn)
-      this.userDetail=this.userArray
+      this.userDetailArray=this.userArray
     });
   }
   

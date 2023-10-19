@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent {
-  hide = true;
+  hide:boolean = true;
   constructor(private router: Router){}
   // constructor(private formBuilder:FormBuilder){}
 
@@ -29,8 +28,7 @@ export class LogInComponent {
   //   return this.email.hasError('email') ? 'Not valid ' : '';
   // }
 
-  onLogIn(form){
-    console.log(form)
+  onLogIn(){
     this.router.navigate(['/form'])
   }
 

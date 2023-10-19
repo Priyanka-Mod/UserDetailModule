@@ -5,10 +5,11 @@
     min-width: 150px;
     max-width: 500px;
     width: 100%;
-    margin-top: 15%;
+    padding-top: 15%;
 }
 .log-in-button{
     padding: 10px;
+    width: 100%;
 }
 .padding-bottom{
     padding-bottom: 16px;
@@ -19,4 +20,22 @@
 }
 .form-full-width {
     width: 100%;
+}
+.header{
+    background-color: #a5a5ff;
+    padding-left: 4%;
+    margin-bottom: 5%;
+}
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.log--in{
+    height: 100%;
+    background-image:url('purpleBg.svg');
+    background-size: cover;
+}
+.input--shadow{
+    .mdc-text-field--filled:not(.mdc-text-field--disabled){
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
 }

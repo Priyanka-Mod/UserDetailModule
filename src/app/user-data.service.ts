@@ -6,14 +6,13 @@ import { User } from './user-detail.model';
   providedIn: 'root'
 })
 export class UserDataService{
-  private formDataSubject: BehaviorSubject<User> = new BehaviorSubject<User>({} as any);
+  private formDataSubject: BehaviorSubject<User> = new BehaviorSubject<User>({} as User);
   
-  setFormData(formData: User): void {
-    console.log('Setting form data:', formData);
+  setUserFormData(formData: User): void {
     this.formDataSubject.next(formData);
   }
 
-  getFormData(): Observable<User> {
+  getUserFormData(): Observable<User> {
     return this.formDataSubject.asObservable();
   }
 }

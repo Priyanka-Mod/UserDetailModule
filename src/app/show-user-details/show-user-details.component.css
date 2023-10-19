@@ -1,5 +1,17 @@
-.user--heading{
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.user-detail-table{
+    height: 100%;
+    background-image:url('purpleBg.svg');
+    background-size: cover;   
+}
+.table--container{
+    padding: 80px 20px;
+}
+.header{
+    background-color: #d3d3ff;
+    height: 70px;
     display: grid;
     justify-content: center;
-    padding: 2% 0%;
 }

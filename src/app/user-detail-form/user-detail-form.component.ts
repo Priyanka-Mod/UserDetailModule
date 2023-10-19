@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDataService } from '../user-data.service';
 import {SearchCountryField,CountryISO,PhoneNumberFormat} from "ngx-intl-tel-input";
 
@@ -10,19 +10,15 @@ import {SearchCountryField,CountryISO,PhoneNumberFormat} from "ngx-intl-tel-inpu
   styleUrls: ['./user-detail-form.component.css']
 })
 export class UserDetailFormComponent implements OnInit {
-  userAddress;
-  userForm;
+  userForm:FormGroup;
   min = new Date('01/01/2000');
   max = new Date();
 
-  separateDialCode = false;
+  separateDialCode:boolean = false;
 	SearchCountryField = SearchCountryField;
 	CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
 	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-  // SearchCountryField = SearchCountryField;
-  // CountryISO = CountryISO;
-  // preferredCountries: CountryISO[] = [CountryISO.Qatar];
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -32,7 +28,7 @@ export class UserDetailFormComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
       dob: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
+      email: ['', [Validators.required, Validators.email]],
       
       number: ["", Validators.required],
       education: this.formBuilder.group({
@@ -52,7 +48,7 @@ export class UserDetailFormComponent implements OnInit {
     });
 
     if (this.userForm) {
-      this.userdata.getFormData().subscribe(formData => {
+      this.userdata.getUserFormData().subscribe(formData => {
 
         const updateValue = {
           name: formData.name,
@@ -68,7 +64,7 @@ export class UserDetailFormComponent implements OnInit {
           summary: formData.summary,
           
         }
-        const hobby ={}
+        const hobby:object = {}
         for(let key in formData.hobby){
           if(formData.hobby[key]) {
             hobby[key]=formData.hobby[key]
@@ -79,37 +75,19 @@ export class UserDetailFormComponent implements OnInit {
         for(let a of formData.address){
           this.address.push(this.createAddress(a))
           this.userForm.patchValue(a)
-          // const newAddress = this.formBuilder.group({
-          //   addedAddress: a.addedAddress,
-          // })
-          // updateValue['address'].push(newAddress.value);
-          // if(formData.address[a]){
-          //  console.log(formData.address[a],'/*/*/*');
-          // //  updateValue['address'] = formData.address[a];
-
-          //  const editAddressValue = this.formBuilder.array([])
-           
-          // //  editAddressValue.push.formData.address[a] as FormArray
-
-          // //  updateValue['address'].push(editAddressValue)
-          // this.patchValue(editedAddress)
         }
-        
-
-        console.log(updateValue,"v");
-
         this.userForm.patchValue(updateValue);
       })
     }
   }
 
-  createAddress(a) {
+  createAddress(a) : FormGroup {
     return this.formBuilder.group({
       addedAddress: a.addedAddress
     });
   }
 
-  get userFormControl() {
+  get userFormControl(){
     return this.userForm.controls;
   }
 
@@ -117,16 +95,14 @@ export class UserDetailFormComponent implements OnInit {
     return this.userForm.controls["address"] as FormArray;
   }
 
-  addAddress() {
+  addAddress() : void {
     const newAddress = this.formBuilder.group({
       addedAddress: ''
     })
     this.address.push(newAddress);
   }
-
-  onSubmit() {
-    this.userdata.setFormData(this.userForm.value);
+  onSubmit() : void {
+    this.userdata.setUserFormData(this.userForm.value);
     this.router.navigate(['/details'])
   }
-
 }
