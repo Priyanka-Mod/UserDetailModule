@@ -3,7 +3,7 @@
 }
 .user-detail-container{
     height: auto;
-    background-image:url('purpleBg.svg');
+    background-image:url('backgroundImg.webp');
     background-size: cover;    
 }
 .card{
@@ -33,7 +33,7 @@
 .gender{
     margin-left: 16px;
 }
-.red{
+.text--red{
     color: red;
 }
 .form-full-width {
@@ -61,7 +61,7 @@
     margin-left: 17px;
     font-size: 12px;
 }
-.telInput{
+.tel--input{
     .iti{
         width: 100% !important;
         height: 50px !important;
@@ -82,5 +82,20 @@
 .input--shadow{
     .mdc-text-field--filled:not(.mdc-text-field--disabled){
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+@media screen and (max-width:768px) {
+    .form-container{
+        max-width: 450px;
+    }    
+}
+@media screen and (max-width:480px) {
+    .form-container{
+        max-width: 350px;
+    }
+}
+@media screen and (max-width:320px) {
+    .form-container{
+        max-width: 295px;
     }
 }

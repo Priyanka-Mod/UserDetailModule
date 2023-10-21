@@ -21,6 +21,8 @@ import { ShowUserDetailsComponent } from './show-user-details/show-user-details.
 import { UserDataService } from './user-data.service';
 import {MatTableModule} from '@angular/material/table';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     MatCheckboxModule,
     MatTableModule,
 		NgxIntlTelInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatSelectModule
     
   ],
   providers: [UserDataService],

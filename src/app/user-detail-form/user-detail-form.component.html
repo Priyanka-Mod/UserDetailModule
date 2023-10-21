@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-full-width padding-bottom ">
                             <div class="form-full-width">
-                                <ngx-intl-tel-input class="telInput" [cssClass]="'custom'" 
+                                <ngx-intl-tel-input class="tel--input" [cssClass]="'custom'" 
                                     [preferredCountries]="preferredCountries"
                                     [enableAutoCountrySelect]="true" 
                                     [enablePlaceholder]="true" 
@@ -71,14 +71,24 @@
                             </mat-form-field>
                         </div>
                         <div>
-                            <mat-form-field class="form-full-width input--shadow">
+                            <!-- <mat-form-field class="form-full-width input--shadow">
                                 <mat-label>Enter catagory of education</mat-label>
                                 <input type="text" matInput formControlName="catagory"
                                     placeholder="eg. HSC, SSC, B.Tech, etc.">
                                 <mat-error *ngIf="userFormControl.education.touched && !userFormControl.education.valid">
                                     Please enter your catagory of education
                                 </mat-error>
-                            </mat-form-field>
+                            </mat-form-field> -->
+                            <mat-form-field class="form-full-width input--shadow">
+                                <mat-label>Catagory of education</mat-label>
+                                <mat-select formControlName="catagory">
+                                  <mat-option value='BSC'>BSC</mat-option>
+                                  <mat-option value="HSC">HSC</mat-option>
+                                  <mat-option value="Bachelors">Bachelors</mat-option>
+                                  <mat-option value="Masters">Masters</mat-option>
+                                </mat-select>
+                                
+                              </mat-form-field>
                         </div>
                         <div>
                             <mat-form-field class="form-full-width input--shadow">
@@ -95,16 +105,15 @@
                             </mat-form-field>
                         </div>
                     </div>
-    
                     <div formGroupName="hobby">
                         <h4>Select your hobby:</h4>
-                        <span><mat-checkbox formControlName="art">Art</mat-checkbox></span>
-                        <span><mat-checkbox formControlName="music">Music</mat-checkbox></span>
-                        <span><mat-checkbox formControlName="dance">Dance</mat-checkbox></span>
-                        <span><mat-checkbox formControlName="read">Reading Books</mat-checkbox></span>
+                        <div><mat-checkbox formControlName="art">Art</mat-checkbox></div>
+                        <div><mat-checkbox formControlName="music">Music</mat-checkbox></div>
+                        <div><mat-checkbox formControlName="dance">Dance</mat-checkbox></div>
+                        <div><mat-checkbox formControlName="read">Reading Books</mat-checkbox></div>
                     </div>
                     <div class="padding-bottom">
-                        <label for="gender">Gender<span class="red">*</span>:</label>
+                        <label for="gender">Gender<span class="text--red">*</span>:</label>
                         <mat-radio-group aria-label="Select an option" formControlName="gender">
                             <mat-radio-button value="male">Male</mat-radio-button>
                             <mat-radio-button value="female">Female </mat-radio-button>
@@ -122,20 +131,18 @@
                         <div *ngFor="let newAddress of address.controls; let i = index">
                             <div [formGroup]="newAddress">
                                 <mat-form-field class="form-full-width padding-top input--shadow">
-                                    <mat-label>Your Address </mat-label>
+                                    <mat-label>Address No. {{i+1}} </mat-label>
                                     <textarea matInput formControlName="addedAddress"></textarea>
                                 </mat-form-field>
                             </div>
                         </div>
                     </div>
-    
                     <div>
                         <mat-form-field class="form-full-width input--shadow padding-top">
                             <mat-label>Your Summary </mat-label>
                             <textarea matInput formControlName="summary"></textarea>
                         </mat-form-field>
                     </div>
-    
                 </div>
             </mat-card-content>
             <mat-card-actions class="buttons">

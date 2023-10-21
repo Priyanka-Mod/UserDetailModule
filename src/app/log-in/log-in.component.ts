@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
+import { LogIn } from '../datatype.model';
 
 
 @Component({
@@ -9,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class LogInComponent {
   hide:boolean = true;
-  constructor(private router: Router){}
+  constructor(private router: Router , private login:LoginService){}
+
   // constructor(private formBuilder:FormBuilder){}
 
   // loginForm = this.formBuilder.group({
@@ -28,8 +31,11 @@ export class LogInComponent {
   //   return this.email.hasError('email') ? 'Not valid ' : '';
   // }
 
-  onLogIn(){
-    this.router.navigate(['/form'])
+  onLogIn(data:LogIn):void{
+    this.login.userLogIn(data).subscribe((result)=>{
+      if(result){
+        this.router.navigate(['/form'])
+      }
+    })
   }
-
 }

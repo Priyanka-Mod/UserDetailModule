@@ -31,11 +31,35 @@
 }
 .log--in{
     height: 100%;
-    background-image:url('purpleBg.svg');
-    background-size: cover;
+    background-image:url('backgroundImg.webp');
+    background-size:cover;
+    width: auto;
 }
 .input--shadow{
     .mdc-text-field--filled:not(.mdc-text-field--disabled){
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+@media screen and (max-width:1024px) {
+    .form-container{
+        padding-top: 25%;
+    }
+}
+@media screen and (max-width:768px) {
+    .form-container{
+        max-width: 400px;
+        padding-top: 35%;
+    }
+}
+@media screen and (max-width:480px) {
+    .form-container{
+        max-width: 350px;
+        padding-top: 40%;
+    }
+}
+@media screen and (max-width:320px) {
+    .form-container{
+        max-width: 300px;
+        padding-top: 45%;
     }
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDataService } from '../user-data.service';
 import {SearchCountryField,CountryISO,PhoneNumberFormat} from "ngx-intl-tel-input";
+import { User, userDetail } from '../datatype.model';
 
 @Component({
   selector: 'app-user-detail-form',

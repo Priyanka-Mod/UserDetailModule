@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'user-details';
   constructor(private router:Router){}
-    ngOnInit() {
+    ngOnInit() :void{
       this.router.navigate([''])
     }
-  
 }

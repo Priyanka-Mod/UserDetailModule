@@ -1,21 +1,22 @@
-import { Component ,OnDestroy,OnInit} from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
 import { UserDataService } from '../user-data.service';
 import { Router } from '@angular/router';
-import { User } from '../user-detail.model';
-
+import {User} from '../datatype.model';
+import { userDetail } from '../datatype.model';
 
 @Component({
   selector: 'app-show-user-details',
   templateUrl: './show-user-details.component.html',
   styleUrls: ['./show-user-details.component.css']
 })
+
 export class ShowUserDetailsComponent implements OnInit{
   formData:User;
   str:string='';
   userAddress:string='';
-  userDetailArray:{ name: string; email: string; dob: Date; number: number; institute: string; catagory: string; percentage: number; gender: string }[];
+  userDetailArray:userDetail[];
 
-  userArray:{ name: string; email: string; dob: Date; number: number; institute: string; catagory: string; percentage: number; gender: string }[] = [];
+  userArray:userDetail[] = [];
   displayColumn =['name','email','dob','number','institute','catagory','percentage','gender']; 
 
   constructor(private userData:UserDataService,
@@ -26,17 +27,17 @@ export class ShowUserDetailsComponent implements OnInit{
       this.formData = formData;
       for(let key in  this.formData.hobby ){
         if(this.formData.hobby[key]) {
-          this.str = this.str + '  ' + key;
+          this.str = this.str + '  ' + key; + '<br/>'
         }
       }
 
       for(let a in this.formData.address){
         if(this.formData.address[a]){
-          this.userAddress = this.userAddress + "  " + this.formData.address[a].addedAddress
+          this.userAddress += `  ${this.formData.address[a].addedAddress}\n\n`;
         }
       }
       
-      const userDetail:{ name: string; email: string; dob: Date; number: number; institute: string; catagory: string; percentage: number; gender: string; }= {
+      const userDetail:userDetail= {
         name: this.formData.name,
         email:this.formData.email,
         dob:this.formData.dob,
@@ -62,12 +63,13 @@ export class ShowUserDetailsComponent implements OnInit{
         userDetail['address'] = this.userAddress;
       }
 
+      this.displayColumn.push('edit');
       this.userArray.push(userDetail)
       this.userDetailArray=this.userArray
     });
   }
   
-  onEdit(){
+  onEdit():void{
     this.router.navigate(['/form'])
   }
   

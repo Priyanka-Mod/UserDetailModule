@@ -3,15 +3,21 @@
 }
 .user-detail-table{
     height: 100%;
-    background-image:url('purpleBg.svg');
+    background-image:url('backgroundImg.webp');
     background-size: cover;   
 }
 .table--container{
-    padding: 80px 20px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 0px 20px;
+
 }
 .header{
     background-color: #d3d3ff;
     height: 70px;
     display: grid;
     justify-content: center;
+}
+.user--address{
+    white-space: pre-line;
 }
