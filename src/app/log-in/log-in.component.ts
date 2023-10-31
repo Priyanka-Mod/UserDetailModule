@@ -11,7 +11,7 @@ import { LogIn } from '../datatype.model';
 })
 export class LogInComponent {
   hide:boolean = true;
-  constructor(private router: Router , private login:LoginService){}
+  constructor(private router: Router , private loginService:LoginService){}
 
   // constructor(private formBuilder:FormBuilder){}
 

@@ -22,7 +22,7 @@ export class UserDetailFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private userdata: UserDataService) {
+    private userdataService: UserDataService) {
   }
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -47,7 +47,7 @@ export class UserDetailFormComponent implements OnInit {
     });
 
     if (this.userForm) {
-      this.userdata.getUserFormData().subscribe(formData => {
+      this.userdataService.getUserFormData().subscribe(formData => {
 
         const updateValue = {
           name: formData.name,
@@ -101,7 +101,7 @@ export class UserDetailFormComponent implements OnInit {
     this.address.push(newAddress);
   }
   onSubmitUser() : void {
-    this.userdata.setUserFormData(this.userForm.value);
+    this.userdataService.setUserFormData(this.userForm.value);
     this.router.navigate(['/details'])
   }
 }

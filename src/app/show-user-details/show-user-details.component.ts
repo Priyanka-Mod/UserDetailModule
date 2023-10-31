@@ -18,11 +18,11 @@ export class ShowUserDetailsComponent implements OnInit{
   userDetailArray:userDetail[] = [];
   displayColumn =['name','email','dob','number','institute','catagory','percentage','gender']; 
 
-  constructor(private userData:UserDataService,
+  constructor(private userDataService:UserDataService,
               private router:Router){}
   ngOnInit(): void {
 
-    this.userData.getUserFormData().subscribe(formData => {
+    this.userDataService.getUserFormData().subscribe(formData => {
       this.formUserData = formData;
       for(let key in  this.formUserData.hobby ){
         if(this.formUserData.hobby[key]) {
