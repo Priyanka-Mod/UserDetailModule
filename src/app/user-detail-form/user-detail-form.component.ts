@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDataService } from '../user-data.service';
 import {SearchCountryField,CountryISO,PhoneNumberFormat} from "ngx-intl-tel-input";
 
@@ -28,8 +28,7 @@ export class UserDetailFormComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
       dob: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       number: ["", Validators.required],
       education: this.formBuilder.group({
         institute: ['', Validators.required],
@@ -101,7 +100,7 @@ export class UserDetailFormComponent implements OnInit {
     })
     this.address.push(newAddress);
   }
-  onSubmit() : void {
+  onSubmitUser() : void {
     this.userdata.setUserFormData(this.userForm.value);
     this.router.navigate(['/details'])
   }

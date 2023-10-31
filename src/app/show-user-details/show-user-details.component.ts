@@ -11,12 +11,11 @@ import { userDetail } from '../datatype.model';
 })
 
 export class ShowUserDetailsComponent implements OnInit{
-  formData:User;
-  str:string='';
+  formUserData:User;
+  hobby:string='';
   userAddress:string='';
-  userDetailArray:userDetail[];
-
-  userArray:userDetail[] = [];
+  userDetailValues:userDetail[];
+  userDetailArray:userDetail[] = [];
   displayColumn =['name','email','dob','number','institute','catagory','percentage','gender']; 
 
   constructor(private userData:UserDataService,
@@ -24,37 +23,37 @@ export class ShowUserDetailsComponent implements OnInit{
   ngOnInit(): void {
 
     this.userData.getUserFormData().subscribe(formData => {
-      this.formData = formData;
-      for(let key in  this.formData.hobby ){
-        if(this.formData.hobby[key]) {
-          this.str = this.str + '  ' + key; + '<br/>'
+      this.formUserData = formData;
+      for(let key in  this.formUserData.hobby ){
+        if(this.formUserData.hobby[key]) {
+          this.hobby = this.hobby + '  ' + key; + '<br/>'
         }
       }
 
-      for(let a in this.formData.address){
-        if(this.formData.address[a]){
-          this.userAddress += `  ${this.formData.address[a].addedAddress}\n\n`;
+      for(let a in this.formUserData.address){
+        if(this.formUserData.address[a]){
+          this.userAddress += `  ${this.formUserData.address[a].addedAddress}\n`;
         }
       }
       
       const userDetail:userDetail= {
-        name: this.formData.name,
-        email:this.formData.email,
-        dob:this.formData.dob,
-        number:this.formData.number,
-        institute:this.formData.education.institute,
-        catagory:this.formData.education.catagory,
-        percentage:this.formData.education.percentage,
-        gender:this.formData.gender,
+        name: this.formUserData.name,
+        email:this.formUserData.email,
+        dob:this.formUserData.dob,
+        number:this.formUserData.number,
+        institute:this.formUserData.education.institute,
+        catagory:this.formUserData.education.catagory,
+        percentage:this.formUserData.education.percentage,
+        gender:this.formUserData.gender,
       }
-      if(this.formData.summary){
+      if(this.formUserData.summary){
         this.displayColumn.push('summary')
-        userDetail['summary']=this.formData.summary
+        userDetail['summary']=this.formUserData.summary
       }
 
-      if(this.str){
+      if(this.hobby){
         this.displayColumn.push('hobby')
-        userDetail['hobby']=this.str
+        userDetail['hobby']=this.hobby
       }
 
     
@@ -64,12 +63,12 @@ export class ShowUserDetailsComponent implements OnInit{
       }
 
       this.displayColumn.push('edit');
-      this.userArray.push(userDetail)
-      this.userDetailArray=this.userArray
+      this.userDetailArray.push(userDetail)
+      this.userDetailValues=this.userDetailArray
     });
   }
   
-  onEdit():void{
+  onEditUser():void{
     this.router.navigate(['/form'])
   }
   

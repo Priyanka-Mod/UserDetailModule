@@ -31,11 +31,12 @@ export class LogInComponent {
   //   return this.email.hasError('email') ? 'Not valid ' : '';
   // }
 
-  onLogIn(data:LogIn):void{
-    this.login.userLogIn(data).subscribe((result)=>{
-      if(result){
-        this.router.navigate(['/form'])
-      }
-    })
+  onLogInUser(data:LogIn):void{
+    // this.login.userLogIn(data).subscribe((result)=>{
+    //   if(result){
+        // this.router.navigate(['/form'])
+    //   }
+    // })
+    this.router.navigate(['/form'])
   }
 }
